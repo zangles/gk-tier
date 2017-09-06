@@ -60,13 +60,13 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="btn-group" role="group" aria-label="...">
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">F</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">E</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">D</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">C</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">B</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">A</button>
                                                             <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">S</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">A</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">B</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">C</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">D</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">E</button>
+                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">F</button>
                                                         </div>
                                                     </div>
                                                 </div>
