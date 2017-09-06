@@ -13,24 +13,41 @@
 <br><br>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary raid-btn-all">All</button>
                     @foreach($raids as $raid)
-                        <button type="button" class="btn btn-primary raid-btn" data-id="{{ $raid->id }}">{{ $raid->name }}</button>
+                        <button type="button" class="btn btn-secundary raid-btn" data-id="{{ $raid->id }}">{{ $raid->name }}</button>
                     @endforeach
                 </div>
-
+            </div>
+            <div class="col-md-6 text-right">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-primary type-btn-all">All</button>
-                    <button type="button" class="btn btn-primary type-btn" data-id="Attack">Attack</button>
-                    <button type="button" class="btn btn-primary type-btn" data-id="Defense">Tank</button>
-                    <button type="button" class="btn btn-primary type-btn" data-id="Support">Support</button>
+                    <button type="button" class="btn btn-secundary type-btn" data-id="Attack">Attack</button>
+                    <button type="button" class="btn btn-secundary type-btn" data-id="Defense">Defense</button>
+                    <button type="button" class="btn btn-secundary type-btn" data-id="Support">Support</button>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="2" class="text-center"> Filter</th>
+                        </tr>
+                        <tr>
+                            <th class="text-center" width="50%">Battle</th>
+                            <th class="text-center" width="50%">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center filter_battle">All</td>
+                        <td class="text-center filter_type">All</td>
+                    </tr>
+                </table>
                 <table class="table">
                     <thead>
                         <tr>
@@ -51,24 +68,8 @@
                                     <p><strong>{{ $pilot->name }}</strong></p>
                                 </td>
                                 @foreach($pilot->raid as $tier)
-                                    <td class="td_tier td_{{ $tier->id }}
-                                            @if($tier->pivot->tier == 'S')
-                                                bg-success
-                                            @elseif($tier->pivot->tier == 'A')
-                                                bg-primary
-                                            @elseif($tier->pivot->tier == 'B')
-                                                bg-info
-                                            @elseif($tier->pivot->tier == 'C')
-                                                bg-secundary
-                                            @elseif($tier->pivot->tier == 'D')
-                                                bg-warning
-                                            @elseif($tier->pivot->tier == 'E')
-                                                bg-danger
-                                            @elseif($tier->pivot->tier == 'F')
-                                                bg-dark
-                                            @endif
-                                            ">
-                                        {{ $tier->pivot->tier }}
+                                    <td class="td_tier td_{{ $tier->id }}">
+                                        @include('partials.tierBadge', ['tier' => $tier->pivot->tier ])
                                     </td>
                                 @endforeach
                             </tr>
@@ -91,19 +92,23 @@
                 var id = $(this).data('id');
                 $(".tr_type").hide();
                 $(".tr_"+id).show();
+                $(".filter_type").html(id);
             });
 
             $(".type-btn-all").click(function(){
                 $(".tr_type").show();
+                $(".filter_type").html('All');
             });
 
             $(".raid-btn-all").click(function(){
                 $(".td_tier").show();
+                $(".filter_battle").html('All');
             });
             $(".raid-btn").click(function(){
                 var id = $(this).data('id');
                 $(".td_tier").hide();
                 $(".td_"+id).show();
+                $(".filter_battle").html($(this).text());
             })
         });
     </script>
