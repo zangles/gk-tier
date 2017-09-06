@@ -23,6 +23,7 @@
                                     <div class="form-group">
                                         <label for="id">ID:</label>
                                         <input type="text" class="form-control" id="id" name="id" value="{{ $pilot->id }}">
+                                        <input type="hidden" class="form-control" id="old_id" name="old_id" value="{{ $pilot->id }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="name">Nombre:</label>

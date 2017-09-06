@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pilot;
 use App\Raid;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PilotController extends Controller
 {
@@ -63,7 +64,7 @@ class PilotController extends Controller
 
     public function update(Request $request)
     {
-        $pilot = Pilot::findOrFail($request->input('id'));
+        $pilot = Pilot::findOrFail($request->input('old_id'));
 
         $pilot->id = $request->input('id');
         $pilot->name = $request->input('name');
@@ -72,7 +73,14 @@ class PilotController extends Controller
         $raids = Raid::all();
 
         foreach ($raids as $raid) {
-            $pilot->raid()->updateExistingPivot($raid->id, ['tier' => $request->input('raid_'.$raid->id) ]);
+            DB::table('pilot_raid')
+                ->where('raid_id', $raid->id)
+                ->update(
+                    array(
+                        'tier' => $request->input('raid_'.$raid->id),
+                        'pilot_id' => $request->input('id')
+                    )
+                );
         }
 
         $pilot->save();

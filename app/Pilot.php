@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pilot extends Model
 {
+    protected $casts = ['id' => 'string'];
+
     public function raid()
     {
         return $this->belongsToMany('App\Raid')->withPivot('tier');
