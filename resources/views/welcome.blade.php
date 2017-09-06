@@ -15,34 +15,46 @@
 <br><br>
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary raid-btn-all">All</button>
-                    @foreach($raids as $raid)
-                        <button type="button" class="btn btn-secundary raid-btn" data-id="{{ $raid->id }}">{{ $raid->name }}</button>
-                    @endforeach
-                </div>
-            </div>
-            <div class="col-md-6 text-right">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary type-btn-all">All</button>
-                    <button type="button" class="btn btn-secundary type-btn" data-id="Attack">Attack</button>
-                    <button type="button" class="btn btn-secundary type-btn" data-id="Defense">Defense</button>
-                    <button type="button" class="btn btn-secundary type-btn" data-id="Support">Support</button>
-                </div>
+            <div class="col-md-12 text-center">
+                <h1>GK Girls - Tiers</h1>
             </div>
         </div>
+        <br><br>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="row">
+                    <label for="">Battle</label>
+                    <div class="col-md-12">
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary raid-btn-all">All</button>
+                            @foreach($raids as $raid)
+                                <button type="button" class="btn btn-secundary raid-btn" data-id="{{ $raid->id }}">{{ $raid->name }}</button>
+                            @endforeach
+                        </div>
+                    </div>
+                    <br><br>
+                    <label for="">Unit Type</label>
+                    <div class="col-md-12">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-primary type-btn-all">All</button>
+                            <button type="button" class="btn btn-secundary type-btn" data-id="Attack">Attack</button>
+                            <button type="button" class="btn btn-secundary type-btn" data-id="Defense">Defense</button>
+                            <button type="button" class="btn btn-secundary type-btn" data-id="Support">Support</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th colspan="2" class="text-center"> Filter</th>
-                        </tr>
-                        <tr>
-                            <th class="text-center" width="50%">Battle</th>
-                            <th class="text-center" width="50%">Type</th>
-                        </tr>
+                    <tr>
+                        <th colspan="2" class="text-center">Actual Filter</th>
+                    </tr>
+                    <tr>
+                        <th class="text-center" width="50%">Battle</th>
+                        <th class="text-center" width="50%">Type</th>
+                    </tr>
                     </thead>
                     <tbody>
                     <tr>
@@ -50,6 +62,12 @@
                         <td class="text-center filter_type">All</td>
                     </tr>
                 </table>
+            </div>
+        </div>
+
+        <br><br>
+        <div class="row">
+            <div class="col-md-12">
                 <table class="table">
                     <thead>
                         <tr>
