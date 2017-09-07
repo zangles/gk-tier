@@ -16,14 +16,7 @@ class PilotController extends Controller
     }
 
 
-    public function list()
-    {
-        $pilots = Pilot::orderBy('name')->get();
-        $raids = Raid::all();
-        $title = 'Pilots';
 
-        return view('frontPage', compact('pilots','raids', 'title'));
-    }
 
     public function index()
     {

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PilotController@list')->name('pilot');
+Route::get('/', 'HomeController@list')->name('pilot');
 
 Auth::routes();
 

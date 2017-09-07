@@ -18,6 +18,15 @@ class HomeController extends Controller
 //        $this->middleware('auth');
 //    }
 
+    public function list()
+    {
+        $pilots = Pilot::orderBy('name')->get();
+        $raids = Raid::all();
+        $title = 'Pilots';
+
+        return view('frontPage', compact('pilots','raids', 'title'));
+    }
+
     /**
      * Show the application dashboard.
      *
