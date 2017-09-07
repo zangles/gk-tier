@@ -14,8 +14,8 @@
 
     <link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/plugins/bootstrapSocial/bootstrap-social.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/plugins/fooTable/footable.bootstrap.css') }}" rel="stylesheet">
-
 
     @yield('styles')
 
@@ -36,7 +36,17 @@
             </div>
             <div class="col-sm-8">
                 <div class="title-action">
-                    <button type="button" class="btn btn-success btn-copy">Share Link</button>
+                    <?php
+                        use Chencha\Share\ShareFacade;
+                        $links = Share::load(url()->current(), $title )->services('facebook', 'twitter');
+                    ?>
+                    @foreach($links as $social => $link)
+                        <a href="{{ $link }}" target="_blank" class="btn btn-social-icon btn-{{ $social }}"><span class="fa fa-{{ $social }}"></span></a>
+                    @endforeach
+
+                    <button type="button" class="btn btn-warning btn-copy" title="Copy to Clipboad">
+                        <i class="fa fa-clipboard" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>

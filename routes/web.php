@@ -11,6 +11,12 @@
 |
 */
 
+
+Route::get('/test', function()
+{
+
+});
+
 Route::get('/', 'HomeController@list')->name('pilot');
 
 Auth::routes();
