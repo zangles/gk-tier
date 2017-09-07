@@ -29,6 +29,7 @@
                         <tr>
                             <th width="130px">Image</th>
                             <th>Name</th>
+                            <th>Type</th>
                             @foreach($raids as $raid)
                                 <th class="td_tier td_{{ $raid->id }} text-center" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
                             @endforeach
@@ -46,6 +47,9 @@
                                 </td>
                                 <td>
                                     <p><strong>{{ $pilot->name }}</strong></p>
+                                </td>
+                                <td>
+                                    <p><strong>{{ $pilot->type }}</strong></p>
                                 </td>
                                 @foreach($pilot->raid as $tier)
                                     <td class="td_tier td_{{ $tier->id }} text-center">

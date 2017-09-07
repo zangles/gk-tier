@@ -72,6 +72,7 @@
                     <thead>
                         <tr>
                             <th>Pilot</th>
+                            <th>Type</th>
                             @foreach($raids as $raid)
                                 <th class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
                             @endforeach
@@ -86,6 +87,9 @@
                                         <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
                                     </div>
                                     <p><strong>{{ $pilot->name }}</strong></p>
+                                </td>
+                                <td>
+                                    {{ $pilot->type }}
                                 </td>
                                 @foreach($pilot->raid as $tier)
                                     <td class="td_tier td_{{ $tier->id }}">
