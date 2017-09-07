@@ -9,6 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class PilotController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function list()
     {
         $pilots = Pilot::orderBy('name')->get();
