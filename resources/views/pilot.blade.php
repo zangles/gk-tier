@@ -71,9 +71,9 @@
                 <h2>{{ $title }}</h2>
             </div>
             <div class="col-sm-8">
-                {{--<div class="title-action">--}}
-                {{--<a href="" class="btn btn-primary">This is action area</a>--}}
-                {{--</div>--}}
+                <div class="title-action">
+                    <button type="button" class="btn btn-primary btn-copy">Copy Link</button>
+                </div>
             </div>
         </div>
 
@@ -85,6 +85,7 @@
                             <h5>Pilot info</h5>
                         </div>
                         <div class="ibox-content">
+                            <input type="hidden" id="input-url" value="Copied!">
                             @include('partials.pilotTier')
                         </div>
                     </div>
@@ -109,11 +110,34 @@
 <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('/js/plugins/fooTable/footable.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+
 
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('/js/inspinia.js') }}"></script>
 <script src="{{ asset('/js/plugins/pace/pace.min.js') }}"></script>
 
+<script>
+    var clipboard = new Clipboard('.btn-copy', {
+        text: function() {
+            return document.querySelector('input[type=hidden]').value;
+        }
+    });
+    clipboard.on('success', function(e) {
+        alert("Copied!");
+        e.clearSelection();
+    });
+    $("#input-url").val(location.href);
+    //safari
+    if (navigator.vendor.indexOf("Apple")==0 && /\sSafari\//.test(navigator.userAgent)) {
+        $('.btn-copy').on('click', function() {
+            var msg = window.prompt("Copy this link", location.href);
+
+        });
+    }
+
+
+</script>
 
 @yield('scripts')
 
