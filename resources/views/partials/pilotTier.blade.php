@@ -1,14 +1,14 @@
-<table class="table">
+<table class="table footable" data-filtering="true" data-sorting="true">
     <thead>
     <tr>
         <th data-sortable="false">Pilot</th>
         <th data-sortable="false">Type</th>
         @foreach($raids as $raid)
-            <th class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
+            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
         @endforeach
     </tr>
     </thead>
-    <tbody style="overflow-y: auto">
+    <tbody style="overflow-y: auto" >
         <tr class="tr_type tr_{{ $pilot->type }}">
             <td>
                 <a href="{{ route('pilot', $pilot) }}">
@@ -20,7 +20,12 @@
                 </a>
             </td>
             <td>
-                {{ $pilot->type }}
+                <div class="col-md-12">
+                    {{ $pilot->type }}
+                </div>
+                <div class="col-md-12 hidden-lg hidden-md">
+                    <p><h2><strong>Click to see tiers</strong></h2></p>
+                </div>
             </td>
             @foreach($pilot->raid as $tier)
                 <td class="td_tier td_{{ $tier->id }}">
@@ -30,3 +35,11 @@
         </tr>
     </tbody>
 </table>
+
+@section('scripts')
+    <script>
+        jQuery(function($){
+            $('.table').footable();
+        });
+    </script>
+@endsection

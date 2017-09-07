@@ -21,7 +21,14 @@
                 </a>
             </td>
             <td>
-                {{ $pilot->type }}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ $pilot->type }}
+                    </div>
+                    <div class="col-md-12 hidden-lg hidden-md">
+                        <p><h2><strong>Click to see tiers</strong></h2></p>
+                    </div>
+                </div>
             </td>
             @foreach($pilot->raid as $tier)
                 <td class="td_tier td_{{ $tier->id }}">
