@@ -1,5 +1,5 @@
 <?php
-header('X-Frame-Options: ALLOW');
+header_remove("X-Frame-Options");
 ?>
 <!DOCTYPE html>
 <html>
