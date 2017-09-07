@@ -11,7 +11,7 @@ class PilotController extends Controller
 {
     public function list()
     {
-        $pilots = Pilot::all();
+        $pilots = Pilot::orderBy('name')->get();
         $raids = Raid::all();
         $title = 'Pilots';
 
