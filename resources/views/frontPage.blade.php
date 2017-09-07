@@ -25,7 +25,9 @@
                 <li class="nav-header">
                     <div class="dropdown profile-element text-center">
                         <span>
-                            <img alt="image" class="img-rounded" src="{{ asset('/img/logo.png') }}"  style="max-height: 90px"/>
+                            <a href="/">
+                                <img alt="image" class="img-rounded" src="{{ asset('/img/logo.png') }}"  style="max-height: 90px"/>
+                            </a>
                          </span>
                     </div>
                     <div class="logo-element">
