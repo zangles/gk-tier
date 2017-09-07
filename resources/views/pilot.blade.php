@@ -85,11 +85,19 @@
                             <h5>Pilot info</h5>
                         </div>
                         <div class="ibox-content">
-                            <input type="hidden" id="input-url" value="Copied!">
-                            @include('partials.pilotTier')
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="hidden" id="input-url" value="Copied!">
+                                    @include('partials.pilotTier')
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <a href="http://gkgirls.info.gf/pilots/{{$pilot->id}}.html" target="_blank" class="btn btn-info">Extended Info</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <div class="footer">
