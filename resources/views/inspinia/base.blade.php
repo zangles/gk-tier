@@ -1,5 +1,5 @@
 <?php
-header('X-Frame-Options: GOFORIT');
+header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
 ?>
 <!DOCTYPE html>
 <html>
