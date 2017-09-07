@@ -17,7 +17,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['middleware' => 'web'], function()
+Route::group(['middleware' => ['web','auth']], function()
 {
     Route::resource('pilot', 'PilotController');
 });
