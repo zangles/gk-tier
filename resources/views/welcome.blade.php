@@ -77,7 +77,7 @@
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="overflow-y: auto">
                         @foreach($pilots as $pilot)
                             <tr class="tr_type tr_{{ $pilot->type }}">
                                 <td>
