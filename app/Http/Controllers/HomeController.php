@@ -23,13 +23,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $pilots = Pilot::all();
-        $raids = Raid::all();
-
-        return view('home', compact('pilots','raids'));
-    }
+//    public function index()
+//    {
+//        $pilots = Pilot::all();
+//        $raids = Raid::all();
+//
+//        return view('home', compact('pilots','raids'));
+//    }
 
     public function best($id)
     {
