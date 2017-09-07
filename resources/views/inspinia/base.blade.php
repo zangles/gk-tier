@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <meta property="og:image" content="{{ asset('/img/logo.png') }}" />
+
     <title>GK Girls - Tiers</title>
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
