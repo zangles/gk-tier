@@ -8,7 +8,7 @@
                 <span class="m-r-sm text-muted welcome-message">Welcome to GK Girls Tiers.</span>
             </li>
             <li>
-                <a href="login.html">
+                <a href="{{ route('login') }}">
                     <i class="fa fa-sign-out"></i> Log in
                 </a>
             </li>
