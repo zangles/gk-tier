@@ -7,7 +7,7 @@
 
     <meta property="og:image" content="{{ asset('/img/logo.png') }}" />
 
-    <title>GK Girls - Tiers</title>
+    <title>GK Girls - Tiers - {{ $title }}</title>
 
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
