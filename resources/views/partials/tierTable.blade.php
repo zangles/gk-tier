@@ -12,11 +12,13 @@
     @foreach($pilots as $pilot)
         <tr class="tr_type tr_{{ $pilot->type }}">
             <td>
+                <a href="{{ route('pilot', $pilot) }}">
                 <div style="height: 128px; width: 128px">
                     <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
                     <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
                 </div>
                 <p><strong>{{ $pilot->name }}</strong></p>
+                </a>
             </td>
             <td>
                 {{ $pilot->type }}

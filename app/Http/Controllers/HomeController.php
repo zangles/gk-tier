@@ -43,4 +43,14 @@ class HomeController extends Controller
 
         return view('frontPage', compact('pilots','raids','raidId', 'title'));
     }
+
+    public function pilot($id)
+    {
+        $pilot = Pilot::findOrFail($id);
+        $raids = Raid::all();
+
+        $title = $pilot->name;
+
+        return view('pilot', compact('pilot', 'raids', 'title'));
+    }
 }
