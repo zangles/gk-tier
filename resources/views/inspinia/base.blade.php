@@ -1,5 +1,5 @@
 <?php
-header_remove("X-Frame-Options");
+header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers2.tk/');
 ?>
 <!DOCTYPE html>
 <html>
