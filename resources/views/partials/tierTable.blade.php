@@ -1,7 +1,7 @@
 <table class="table" data-filtering="true" data-sorting="true">
     <thead>
     <tr>
-        <th data-sortable="false">Pilot</th>
+        <th>Pilot</th>
         <th data-sortable="false">Type</th>
         @foreach($raids as $raid)
             <th class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
