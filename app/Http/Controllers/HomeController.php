@@ -24,7 +24,7 @@ class HomeController extends Controller
         $raids = Raid::all();
         $title = 'Pilots';
 
-        return view('frontPage', compact('pilots','raids', 'title'));
+        return view('pilot.list', compact('pilots','raids', 'title'));
     }
 
     /**
@@ -50,7 +50,7 @@ class HomeController extends Controller
 
         $title = 'The best in '.$raid->name;
 
-        return view('frontPage', compact('pilots','raids','raidId', 'title'));
+        return view('pilot.list', compact('pilots','raids','raidId', 'title'));
     }
 
     public function pilot($id)
@@ -60,6 +60,6 @@ class HomeController extends Controller
 
         $title = $pilot->name;
 
-        return view('pilot', compact('pilot', 'raids', 'title'));
+        return view('pilot.view', compact('pilot', 'raids', 'title'));
     }
 }
