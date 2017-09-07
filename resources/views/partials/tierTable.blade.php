@@ -26,7 +26,7 @@
                         {{ $pilot->type }}
                     </div>
                     <div class="col-md-12 hidden-lg hidden-md">
-                        <p><h2><strong>Click to see tiers</strong></h2></p>
+                        <p><h2 class="click-expand"><strong>Click to see tiers</strong></h2></p>
                     </div>
                 </div>
             </td>
@@ -53,6 +53,10 @@
                 }]
             }
             @endif
+        });
+
+        $(".click-expand").click(function(){
+            $(this).parents('td').click();
         });
     });
 </script>
