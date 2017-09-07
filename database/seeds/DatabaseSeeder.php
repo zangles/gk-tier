@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AdminUserSeed::class);
         $this->call(RaidSeed::class);
+        //$this->call(pilotsSeed::class);
         // $this->call(UsersTableSeeder::class);
     }
 }

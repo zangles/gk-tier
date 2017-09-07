@@ -68,17 +68,17 @@
         <br><br>
         <div class="row">
             <div class="col-md-12">
-                <table class="table">
+                <table class="table" >
                     <thead>
                         <tr>
                             <th>Pilot</th>
                             <th>Type</th>
                             @foreach($raids as $raid)
-                                <th class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
+                                <th data-sortable="true" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
                             @endforeach
                         </tr>
                     </thead>
-                    <tbody style="overflow-y: auto">
+                    <tbody>
                         @foreach($pilots as $pilot)
                             <tr class="tr_type tr_{{ $pilot->type }}">
                                 <td>

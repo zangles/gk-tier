@@ -1,4 +1,5 @@
-<h1><span class="badge @if($tier == 'S')
+<h1>
+    <button class="btn @if($tier == 'S')
             badge-success
 @elseif($tier == 'A')
             badge-primary
@@ -12,5 +13,5 @@
             badge-danger
 @elseif($tier == 'F')
             badge-dark
-@endif">{{ $tier }}</span>
+@endif"><strong>{{ $tier }}</strong></button>
 </h1>
