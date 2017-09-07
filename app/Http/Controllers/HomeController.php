@@ -28,7 +28,7 @@ class HomeController extends Controller
         $pilots = Pilot::all();
         $raids = Raid::all();
 
-        return view('frontPage', compact('pilots','raids'));
+        return view('home', compact('pilots','raids'));
     }
 
     public function test()
