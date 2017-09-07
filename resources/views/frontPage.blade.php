@@ -32,20 +32,17 @@
                         GK
                     </div>
                 </li>
-                <li class="active">
+                <li class="{{ Request::is('/') ? 'active' : '' }}">
                     <a href="/"><i class="fa fa-users"></i> <span>Pilots</span></a>
                 </li>
-                {{--<li>--}}
-                    {{--<a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">The best in...</span><span class="fa arrow"></span></a>--}}
-                    {{--<ul class="nav nav-second-level">--}}
-                        {{--<li><a href="graph_flot.html">Demon</a></li>--}}
-                        {{--<li><a href="graph_morris.html">Dragon</a></li>--}}
-                        {{--<li><a href="graph_rickshaw.html">Kraken</a></li>--}}
-                        {{--<li><a href="graph_chartjs.html">Deathmatch</a></li>--}}
-                        {{--<li><a href="graph_peity.html">Shootout</a></li>--}}
-                        {{--<li><a href="graph_sparkline.html">Arena</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
+                <li class="{{ Request::is('best/*') ? 'active' : '' }}">
+                    <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">The best in...</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        @foreach($raids as $raid)
+                            <li><a href="{{ route('best',$raid->id) }}">{{ $raid->name }}</a></li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -71,7 +68,7 @@
         </div>
         <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-sm-4">
-                <h2>Pilots</h2>
+                <h2>{{ $title }}</h2>
             </div>
             <div class="col-sm-8">
                 {{--<div class="title-action">--}}
@@ -85,41 +82,10 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Pilots</h5>
+                            <h5>Pilot list</h5>
                         </div>
                         <div class="ibox-content">
-                            <table class="table" data-filtering="true" data-sorting="true">
-                                <thead>
-                                <tr>
-                                    <th data-sortable="false">Pilot</th>
-                                    <th data-sortable="false">Type</th>
-                                    @foreach($raids as $raid)
-                                        <th class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
-                                    @endforeach
-                                </tr>
-                                </thead>
-                                <tbody style="overflow-y: auto">
-                                @foreach($pilots as $pilot)
-                                    <tr class="tr_type tr_{{ $pilot->type }}">
-                                        <td>
-                                            <div style="height: 128px; width: 128px">
-                                                <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
-                                                <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
-                                            </div>
-                                            <p><strong>{{ $pilot->name }}</strong></p>
-                                        </td>
-                                        <td>
-                                            {{ $pilot->type }}
-                                        </td>
-                                        @foreach($pilot->raid as $tier)
-                                            <td class="td_tier td_{{ $tier->id }}">
-                                                @include('partials.tierBadge', ['tier' => $tier->pivot->tier ])
-                                            </td>
-                                        @endforeach
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            @include('partials.tierTable')
                         </div>
                     </div>
                 </div>
@@ -150,12 +116,8 @@
 <script src="{{ asset('/js/inspinia.js') }}"></script>
 <script src="{{ asset('/js/plugins/pace/pace.min.js') }}"></script>
 
-<script>
-    jQuery(function($){
-        $('.table').footable();
-    });
-</script>
 
+@yield('scripts')
 
 </body>
 

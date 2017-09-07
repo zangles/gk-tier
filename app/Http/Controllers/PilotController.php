@@ -13,8 +13,9 @@ class PilotController extends Controller
     {
         $pilots = Pilot::all();
         $raids = Raid::all();
+        $title = 'Pilots';
 
-        return view('frontPage', compact('pilots','raids'));
+        return view('frontPage', compact('pilots','raids', 'title'));
     }
 
     public function index()

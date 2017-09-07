@@ -31,11 +31,16 @@ class HomeController extends Controller
         return view('home', compact('pilots','raids'));
     }
 
-    public function test()
+    public function best($id)
     {
         $pilots = Pilot::all();
         $raids = Raid::all();
+        $raidId = $id;
 
-        return view('frontPage', compact('pilots','raids'));
+        $raid = Raid::findOrFail($raidId);
+
+        $title = 'The best in '.$raid->name;
+
+        return view('frontPage', compact('pilots','raids','raidId', 'title'));
     }
 }
