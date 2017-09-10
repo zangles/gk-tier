@@ -22,7 +22,8 @@
             </td>
             <td>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 text-center">
+                        <img src="{{ asset('img/'.$pilot->type.'.png') }}" alt=""><br>
                         {{ $pilot->type }}
                     </div>
                     <div class="col-md-12 hidden-lg hidden-md">
