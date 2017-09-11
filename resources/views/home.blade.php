@@ -67,6 +67,9 @@
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                     </form>
+                                    <a href="http://gkgirls.info.gf/pilots/{{ $pilot->id }}.html" target="_blank" class="btn btn-primary">
+                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
