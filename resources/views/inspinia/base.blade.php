@@ -9,6 +9,10 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta property="og:image" content="{{ asset('/img/logo.png') }}" />
+    <meta property="og:title" content="GK Girls - Tiers - {{ $title }}" />
+    <meta property="og:description" content="GK Girls - Tiers - {{ $title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://67.205.181.93" />
 
     <title>GK Girls - Tiers - {{ $title }}</title>
 
