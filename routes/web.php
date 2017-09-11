@@ -23,7 +23,7 @@ Auth::routes();
 
 Route::get('/home', 'PilotController@index')->name('home');
 Route::get('/best/{id}', 'HomeController@best')->name('best');
-Route::get('/pilot/{id}', 'HomeController@pilot')->name('pilot');
+Route::get('/pilot/show/{id}', 'HomeController@pilot')->name('pilot');
 
 
 

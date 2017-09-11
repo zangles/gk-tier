@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pilot;
+use App\pilotsDress;
 use App\Raid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +15,6 @@ class PilotController extends Controller
     {
         $this->middleware('auth');
     }
-
-
-
 
     public function index()
     {
@@ -48,6 +46,15 @@ class PilotController extends Controller
 
         foreach ($raids as $raid) {
             $pilot->raid()->attach($raid->id, ['tier' => $request->input('raid_'.$raid->id) ] );
+        }
+
+        $dressesName = $request->input('dressname');
+        foreach ($dressesName as $dressName) {
+            if($dressName != ""){
+                $dress = new pilotsDress();
+                $dress->name = $dressName;
+                $pilot->dress()->save($dress);
+            }
         }
 
         $pilot->save();
@@ -83,6 +90,16 @@ class PilotController extends Controller
                         'pilot_id' => $request->input('id')
                     )
                 );
+        }
+
+        $pilot->dress()->delete();
+        $dressesName = $request->input('dressname');
+        foreach ($dressesName as $dressName) {
+            if($dressName != ""){
+                $dress = new pilotsDress();
+                $dress->name = $dressName;
+                $pilot->dress()->save($dress);
+            }
         }
 
         $pilot->save();

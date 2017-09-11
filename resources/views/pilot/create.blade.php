@@ -18,61 +18,34 @@
                         <form action="{{ route('pilot.store') }}" method="post">
                             {{ csrf_field() }}
                             <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="id">ID:</label>
-                                        <input type="text" class="form-control" id="id" name="id">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="name">Nombre:</label>
-                                        <input type="text" class="form-control" id="name" name="name">
-                                    </div>
-                                    <label for="name">Type:</label>
-                                    <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default pilot-type">Attack</button>
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default pilot-type">Defense</button>
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <button type="button" class="btn btn-default pilot-type">Support</button>
-                                        </div>
+                                <div class="col-md-12">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Pilot Info</a></li>
+                                        <li role="presentation"><a href="#dresses" aria-controls="dresses" role="tab" data-toggle="tab">Dresses</a></li>
+                                        <li role="presentation"><a href="#raids" aria-controls="raids" role="tab" data-toggle="tab">Raid Info</a></li>
+                                    </ul>
 
-                                    </div>
-                                    <button class="btn btnType"></button>
-                                    <input type="hidden" id="pilotType" name="pilotType">
-                                </div>
-                                <div class="col-md-8">
-                                    @foreach($raids as $raid)
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading">
-                                                {{ $raid->name }}
-                                            </div>
-                                            <div class="panel-body text-center">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <input type="hidden" name="raid_{{ $raid->id }}" id="raid_tier_{{ $raid->id }}" value="">
-                                                        <button class="btn" id="raid_tier_btn_{{ $raid->id }}"></button>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="btn-group" role="group" aria-label="...">
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">S</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">A</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">B</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">C</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">D</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">E</button>
-                                                            <button type="button" class="btn btn-default btn-tier" data-raid="{{ $raid->id }}">F</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="info">
+                                            <br>
+                                            @include('pilot.partials.createPilotInfo')
                                         </div>
-                                    @endforeach
+                                        <div role="tabpanel" class="tab-pane" id="dresses">
+                                            <br>
+                                            @include('pilot.partials.createPilotDresses')
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="raids">
+                                            <br>
+                                            @include('pilot.partials.createRaidsInfo')
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-12 text-center">
+                                        <hr>
                                         <button class="btn btn-success" type="submit">Save</button>
                                     </div>
                                 </div>

@@ -28,4 +28,9 @@ class Pilot extends Model
     {
         return $this->raid()->where('raids.id', $raidId)->get()->first()->pivot->tier;
     }
+
+    public function dress()
+    {
+        return $this->hasMany('App\pilotsDress');
+    }
 }
