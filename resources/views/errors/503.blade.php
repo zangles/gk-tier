@@ -15,6 +15,8 @@
     <style>
         html, body {
             background-image: url("{{ asset('img/wall.jpg') }}");
+            background-repeat:no-repeat;
+            background-position: center center;
             color: #dff0f9;
             font-family: 'Raleway', sans-serif;
             font-weight: 100;
