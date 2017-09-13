@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Pilot;
 use App\pilotsDress;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 use Waavi\Translation\Models\Language;
 use Waavi\Translation\Models\Translation;
 use Waavi\Translation\Repositories\LanguageRepository;
@@ -39,6 +40,8 @@ class migratejson extends Command
 
     private $units;
     private $dresses;
+    
+    private $totals = [];
 
     /**
      * Create a new command instance.
@@ -57,13 +60,25 @@ class migratejson extends Command
      */
     public function handle()
     {
-        $this->line('Updating Translation');
-        $this->loadTrans();
-        $this->line('--------------------------------');
-        $this->line('Updating Pilots');
-        $this->migratePilots();
-        $this->info('FINISH');
+        $time_start = microtime(true);
 
+        Artisan::call('down');
+        $this->loadTrans();
+        $this->migratePilots();
+        $this->showResult();
+        Artisan::call('up');
+
+        $totalTime = 'Total execution time in seconds: ' . (microtime(true) - $time_start);
+        $this->line($totalTime);
+    }
+
+    private function showResult()
+    {
+        $this->line('------------------------------------');
+        foreach ($this->totals as $title=>$total) {
+            $this->info($total . ' ' . $title);
+        }
+        $this->line('------------------------------------');
     }
 
     private function migratePilots()
@@ -73,10 +88,16 @@ class migratejson extends Command
         $this->dresses = $this->getJsonFile('CommanderCostumeDataTable.json');
 
         $PilotsBar = $this->output->createProgressBar(count($pilots));
+        $PilotsBar->setMessage('Updating Pilots');
+        $PilotsBar->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message% %pilotname%');
+        $PilotsBar->setFormat('custom');
+
         $totalNew = 0;
         $totalUpdate = 0;
         foreach ($pilots as $pilot) {
             if ($pilot->C_Type == 1){
+                $PilotsBar->setMessage( trans('gk.'.$pilot->S_Idx), 'pilotname');
+
                 if (Pilot::find($pilot->resourceId)->count() == 0) {
                     $this->createPilot($pilot);
                     $totalNew++;
@@ -89,13 +110,20 @@ class migratejson extends Command
 
             $PilotsBar->advance();
         }
+        $PilotsBar->setMessage( '', 'pilotname');
+        $PilotsBar->setMessage('Updating Pilots - Complete');
         $PilotsBar->finish();
-        $this->info(PHP_EOL.$totalNew.' new Pilots');
-        $this->info($totalUpdate.' updated Pilots');
+        $this->line(PHP_EOL);
+        $this->totals = array_merge($this->totals,[
+            'new Pilots' => $totalNew,
+            'updated Pilots' => $totalUpdate
+        ]);
+
     }
 
     private function createPilot($pilot)
     {
+
         $code = $pilot->resourceId;
         $unitId = $pilot->unitId;
         $transNameId = $pilot->S_Idx;
@@ -177,10 +205,12 @@ class migratejson extends Command
     private function loadTrans()
     {
         $locale = new Language();
-        $this->line('Creating Languages');
 
         $newsLangs = 0;
         $LocaleBar = $this->output->createProgressBar(count($this->locales));
+        $LocaleBar->setMessage('Updating Locales');
+        $LocaleBar->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+        $LocaleBar->setFormat('custom');
 
         foreach ($this->locales as $localeCode=>$localeName) {
             if(Language::where('locale' ,'=',$localeCode)->get()->count() == 0){
@@ -189,13 +219,20 @@ class migratejson extends Command
             }
             $LocaleBar->advance();
         }
+        $LocaleBar->setMessage('Updating Locales - Complete');
         $LocaleBar->finish();
-        $this->info(PHP_EOL.$newsLangs.' new Locales created');
+        $this->line(PHP_EOL);
 
-        $this->line('Updating Translations');
+        $this->totals = array_merge($this->totals,['new Locales' => $newsLangs]);
+
         $trans = $this->getTxtFile('Localization.txt');
         $totalTrans = (count($trans)-1)*count($this->locales);
+
         $transBar = $this->output->createProgressBar($totalTrans);
+        $transBar->setMessage('Updating Translations');
+        $transBar->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+        $transBar->setFormat('custom');
+
         $totalNewTrans = 0;
         $totalUpdateTrans = 0;
         foreach ($trans as $k => $tran) {
@@ -228,10 +265,14 @@ class migratejson extends Command
                 }
             }
         }
+        $transBar->setMessage('Updating Translations - Complete');
         $transBar->finish();
-        $this->info(PHP_EOL.$totalNewTrans.' new Translations');
-        $this->info($totalUpdateTrans.' updated Translations');
+        $this->line(PHP_EOL);
 
+        $this->totals = array_merge($this->totals,[
+            'new Translations' => $totalNewTrans,
+            'updated Translations' => $totalUpdateTrans
+        ]);
     }
 
     private function getJsonFile($name)
