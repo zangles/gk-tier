@@ -15,7 +15,7 @@ class CheckForMaintenanceMode
      */
     protected $app;
 
-    protected $except = ['admin', 'admin/*', 'logina'];
+    protected $except = ['admin', 'admin/*', 'login'];
 
     /**
      * Create a new middleware instance.
