@@ -18,6 +18,7 @@ Route::get('/test', function()
 });
 
 Route::get('/', 'HomeController@list')->name('pilot');
+Route::get('/test', 'HomeController@test')->name('test');
 
 Auth::routes();
 

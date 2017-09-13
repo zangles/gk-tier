@@ -17,7 +17,7 @@
                     <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
                     <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
                 </div>
-                <p><strong>{{ $pilot->name }}</strong></p>
+                <p><strong>{{ trans('gk.'.$pilot->name) }}</strong></p>
                 </a>
             </td>
             <td>
@@ -31,11 +31,17 @@
                     </div>
                 </div>
             </td>
-            @foreach($pilot->raid as $tier)
-                <td class="td_tier td_{{ $tier->id }}">
-                    @include('partials.tierBadge', ['tier' => $tier->pivot->tier ])
+            @if (count($pilot->raid) == 0)
+                <td class="td_tier text-center" colspan="{{ count($raids) }}">
+                    <br><br><h1>No info yet</h1>
                 </td>
-            @endforeach
+            @else
+                @foreach($pilot->raid as $tier)
+                    <td class="td_tier td_{{ $tier->id }}">
+                        @include('partials.tierBadge', ['tier' => $tier->pivot->tier ])
+                    </td>
+                @endforeach
+            @endif
         </tr>
     @endforeach
     </tbody>

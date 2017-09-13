@@ -16,6 +16,8 @@ class PilotController extends Controller
         $this->middleware('auth');
     }
 
+
+
     public function index()
     {
         $pilots = Pilot::all();

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Exceptions\MaintenanceModeException;
-
+use Illuminate\Support\Facades\Config;
 class CheckForMaintenanceMode
 {
     /**
@@ -39,7 +39,6 @@ class CheckForMaintenanceMode
      */
     public function handle($request, Closure $next)
     {
-
         if ($this->app->isDownForMaintenance() && ! $this->shouldPassThrough($request)) {
 
             $data = json_decode(file_get_contents($this->app->storagePath().'/framework/down'), true);

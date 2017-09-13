@@ -18,6 +18,17 @@ class HomeController extends Controller
 //        $this->middleware('auth');
 //    }
 
+    public function test()
+    {
+        return response()->stream(function () {
+            var_dump('Hello World');
+            flush();
+            sleep(10);
+            var_dump('Hello World');
+            flush();
+        }, 200);
+    }
+
     public function list()
     {
         $pilots = Pilot::orderBy('name')->get();
@@ -58,7 +69,7 @@ class HomeController extends Controller
         $pilot = Pilot::findOrFail($id);
         $raids = Raid::all();
 
-        $title = $pilot->name;
+        $title = trans('gk.'.$pilot->name);
 
         return view('pilot.view', compact('pilot', 'raids', 'title'));
     }
