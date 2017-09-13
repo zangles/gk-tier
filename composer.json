@@ -8,10 +8,11 @@
         "php": ">=7.0.0",
         "chencha/share": "^5.2",
         "doctrine/dbal": "^2.6",
+        "erusev/parsedown": "1.6.3",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "erusev/parsedown": "1.6.3"
+        "waavi/translation": "2.3.x"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.0",

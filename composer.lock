@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1b1e5cb1d36f0d36ab8fafaef0436a3",
+    "content-hash": "e6331165553781d89ec6b191ee29c52b",
     "packages": [
         {
             "name": "chencha/share",
@@ -2565,6 +2565,57 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
+        },
+        {
+            "name": "waavi/translation",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Waavi/translation.git",
+                "reference": "c89d1023cef62f26c2cbc431511fd8c08af69617"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Waavi/translation/zipball/c89d1023cef62f26c2cbc431511fd8c08af69617",
+                "reference": "c89d1023cef62f26c2cbc431511fd8c08af69617",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.5",
+                "laravel/framework": "~5.5"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.9",
+                "orchestra/testbench": "~3.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Waavi\\Translation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Waavi",
+                    "email": "info@waavi.com",
+                    "homepage": "http://waavi.com"
+                }
+            ],
+            "description": "A Translation package for Laravel 5 with database and cache support",
+            "keywords": [
+                "laravel",
+                "laravel-translator",
+                "localization",
+                "translation",
+                "translator",
+                "waavi"
+            ],
+            "time": "2017-09-01T15:24:21+00:00"
         }
     ],
     "packages-dev": [
