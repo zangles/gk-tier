@@ -106,7 +106,8 @@ class migratejson extends Command
             if ($pilot->C_Type == 1){
                 $PilotsBar->setMessage( trans('gk.'.$pilot->S_Idx), 'pilotname');
 
-                if (Pilot::find($pilot->resourceId)->count() == 0) {
+                $auxPilot = Pilot::find($pilot->resourceId);
+                if (is_null($auxPilot)) {
                     $this->createPilot($pilot);
                     $totalNew++;
                 } else {
