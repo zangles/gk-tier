@@ -33,17 +33,47 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         GK Girls Tiers
                     </a>
+                    <ul class="nav navbar-nav">
+                        <li class="@if( Request::is('home') ) active @endif">
+                            <a href="{{ route('home') }}">Pilots<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="dropdown @if( Request::is('locale') or Request::is('trans') ) active @endif">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('locale.index') }}">Locales</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Translations</a>
+                                    </li>
+                                </ul>
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                        <li>
+                            <a href="{{ route('update.db') }}">
+                                UpdateDb
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('change.status') }}">
+                                App Status
+                                @if (App::isDownForMaintenance())
+                                    <span class="label label-danger">DOWN</span>
+                                @else
+                                    <span class="label label-success">UP</span>
+                                @endif
+                            </a>
+                        </li>
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else

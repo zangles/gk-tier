@@ -30,4 +30,8 @@ Route::get('/pilot/show/{id}', 'HomeController@pilot')->name('pilot');
 Route::group(['middleware' => ['web','auth']], function()
 {
     Route::resource('pilot', 'PilotController');
+    Route::resource('locale', 'LocaleController');
+    Route::get('/locale/restore/{locale}', 'LocaleController@restore')->name('locale.restore');
+    Route::get('/app/status', 'HomeController@changeStatus')->name('change.status');
+    Route::get('/app/updatedb', 'HomeController@updateDb')->name('update.db');
 });
