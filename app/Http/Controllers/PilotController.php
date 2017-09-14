@@ -82,17 +82,14 @@ class PilotController extends Controller
 
         $raids = Raid::all();
 
+        DB::table('pilot_raid')
+            ->where('pilot_id', $request->input('old_id'))
+            ->delete();
+
         foreach ($raids as $raid) {
-            DB::table('pilot_raid')
-                ->where('raid_id', $raid->id)
-                ->where('pilot_id', $request->input('old_id'))
-                ->update(
-                    array(
-                        'tier' => $request->input('raid_'.$raid->id),
-                        'pilot_id' => $request->input('id')
-                    )
-                );
+            $pilot->raid()->attach($raid->id, ['tier' => $request->input('raid_'.$raid->id) ] );
         }
+
 
         $pilot->dress()->delete();
         $dressesName = $request->input('dressname');

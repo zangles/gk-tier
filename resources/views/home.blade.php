@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-6">Pilots</div>
                         <div class="col-md-6 text-right">
-                            <a href="{{ route('pilot.create') }}" class="btn btn-success">New Pilot</a>
+
                         </div>
                     </div>
                 </div>
@@ -46,16 +46,22 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <p><strong>{{ $pilot->name }}</strong></p>
+                                    <p><strong>{{ trans('gk.'.$pilot->name) }}</strong></p>
                                 </td>
                                 <td>
                                     <p><strong>{{ $pilot->type }}</strong></p>
                                 </td>
-                                @foreach($pilot->raid as $tier)
-                                    <td class="td_tier td_{{ $tier->id }} text-center">
-                                        <button class="btn">{{$tier->pivot->tier}}</button>
+                                @if (count($pilot->raid) > 0)
+                                    @foreach($pilot->raid as $tier)
+                                        <td class="td_tier td_{{ $tier->id }} text-center">
+                                            <button class="btn">{{$tier->pivot->tier}}</button>
+                                        </td>
+                                    @endforeach
+                                @else
+                                    <td colspan="6">
+                                        no info yet
                                     </td>
-                                @endforeach
+                                @endif
                                 <td>
                                     <a href="{{ route('pilot.edit',$pilot) }}" class="btn btn-primary">
                                         <i class="fa fa-pencil" aria-hidden="true"></i>

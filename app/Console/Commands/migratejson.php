@@ -6,6 +6,7 @@ use App\Pilot;
 use App\pilotsDress;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 use Waavi\Translation\Models\Language;
 use Waavi\Translation\Models\Translation;
 use Waavi\Translation\Repositories\LanguageRepository;
@@ -62,11 +63,18 @@ class migratejson extends Command
     {
         $time_start = microtime(true);
 
+        ini_set('max_execution_time', 9999);
+        set_time_limit ( 9999 );
+
         Artisan::call('down');
+        exec('git clone https://github.com/questforboobs/gkdata');
+
         $this->loadTrans();
         $this->migratePilots();
         $this->showResult();
         Artisan::call('up');
+
+        exec('rm -rf '.realpath(base_path('gkdata')));
 
         $totalTime = 'Total execution time in seconds: ' . (microtime(true) - $time_start);
         $this->line($totalTime);
@@ -204,6 +212,7 @@ class migratejson extends Command
 
     private function loadTrans()
     {
+
         $locale = new Language();
 
         $newsLangs = 0;
@@ -235,9 +244,11 @@ class migratejson extends Command
 
         $totalNewTrans = 0;
         $totalUpdateTrans = 0;
+        $countTrans = count($trans);
         foreach ($trans as $k => $tran) {
             if ($k > 0) {
                 foreach ($this->locales as $localeCode=>$localeName) {
+
 
                     $text = $tran[$this->localePosition[$localeCode]];
                     $dbTrans = Translation::where('locale' ,'=',$localeCode)

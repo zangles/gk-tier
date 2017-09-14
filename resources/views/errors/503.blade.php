@@ -60,7 +60,9 @@
     <div class="content">
         <div class="title">
             <img src="{{ asset('img/logo.png') }}" style="max-height: 150px" alt=""><br>
-            Updating... <br>Please back in 2 min.</div>
+            Updating... <br>
+            {{--Please back in 2 min.--}}
+        </div>
     </div>
 </div>
 </body>

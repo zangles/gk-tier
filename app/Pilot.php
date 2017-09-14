@@ -26,7 +26,12 @@ class Pilot extends Model
 
     public function findRaidTierByRaidId($raidId)
     {
-        return $this->raid()->where('raids.id', $raidId)->get()->first()->pivot->tier;
+        $raid = $this->raid()->where('raids.id', $raidId)->get();
+        if(count($raid) > 0) {
+            return $raid->first()->pivot->tier;
+        } else {
+            return "";
+        }
     }
 
     public function dress()

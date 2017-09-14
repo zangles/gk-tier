@@ -7,10 +7,8 @@
             <div class="panel-body text-center">
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="hidden" name="raid_{{ $raid->id }}" id="raid_tier_{{ $raid->id }}" value="{{ $pilot->findRaidTierByRaidId($raid
-                                                        ->id) }}">
-                        <button class="btn" id="raid_tier_btn_{{ $raid->id }}">{{ $pilot->findRaidTierByRaidId($raid
-                                                        ->id) }}</button>
+                        <input type="hidden" name="raid_{{ $raid->id }}" id="raid_tier_{{ $raid->id }}" value="{{ $pilot->findRaidTierByRaidId($raid->id) }}">
+                        <button class="btn" id="raid_tier_btn_{{ $raid->id }}">{{ $pilot->findRaidTierByRaidId($raid->id) }}</button>
                     </div>
                     <div class="col-md-6">
                         <div class="btn-group" role="group" aria-label="...">

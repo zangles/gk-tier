@@ -2,31 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\UpdateDb;
 use App\Pilot;
 use App\Raid;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Artisan;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
 //    public function __construct()
 //    {
 //        $this->middleware('auth');
 //    }
 
-    public function test()
+
+    public function updateDb()
     {
-        return response()->stream(function () {
-            var_dump('Hello World');
-            flush();
-            sleep(10);
-            var_dump('Hello World');
-            flush();
-        }, 200);
+//        ini_set('max_execution_time', 9999);
+//        set_time_limit ( 9999 );
+//        Artisan::call('command:migrate:json');
+
+        return redirect()->route('home');
+    }
+
+    public function changeStatus()
+    {
+        if(App::isDownForMaintenance()) {
+            Artisan::call('up');
+        } else {
+            Artisan::call('down');
+        }
+
+        return redirect()->route('home');
     }
 
     public function list()
