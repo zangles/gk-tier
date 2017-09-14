@@ -1,6 +1,13 @@
 # __Change Log__
 ***
 
+### __v 0.3.0 - 14-09-2017__
+
+- New translations process
+- Now we use the questforboobs repository for translations and pilot info
+- New command for auto import repository news pilots
+- Maintenance mode added 
+
 ### __v 0.2.2 - 10-09-2017__
 
 - Added pilot dress in admin for futures updates

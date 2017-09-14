@@ -67,9 +67,9 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
                             <li>
-                                <a href="{{ route('update.db') }}">
-                                    UpdateDb
-                                </a>
+                                {{--<a href="{{ route('update.db') }}">--}}
+                                    {{--UpdateDb--}}
+                                {{--</a>--}}
                             </li>
                             <li>
                                 <a href="{{ route('change.status') }}">
