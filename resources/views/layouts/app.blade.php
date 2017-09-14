@@ -33,22 +33,25 @@
                     <a class="navbar-brand" href="{{ url('/') }}">
                         GK Girls Tiers
                     </a>
-                    <ul class="nav navbar-nav">
-                        <li class="@if( Request::is('home') ) active @endif">
-                            <a href="{{ route('home') }}">Pilots<span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="dropdown @if( Request::is('locale') or Request::is('trans') ) active @endif">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('locale.index') }}">Locales</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Translations</a>
-                                    </li>
-                                </ul>
-                        </li>
-                    </ul>
+                    @guest
+                    @else
+                        <ul class="nav navbar-nav">
+                            <li class="@if( Request::is('home') ) active @endif">
+                                <a href="{{ route('home') }}">Pilots<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="dropdown @if( Request::is('locale') or Request::is('trans') ) active @endif">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Translations <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ route('locale.index') }}">Locales</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Translations</a>
+                                        </li>
+                                    </ul>
+                            </li>
+                        </ul>
+                    @endguest
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
