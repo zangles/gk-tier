@@ -31,7 +31,7 @@
                             <th>Name</th>
                             <th>Type</th>
                             @foreach($raids as $raid)
-                                <th class="td_tier td_{{ $raid->id }} text-center" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
+                                <th class="td_tier td_{{ $raid->id }} text-center" id="th_{{ $raid->name }} ">{{ trans('gk.'.$raid->name) }}</th>
                             @endforeach
                             <th>Actions</th>
                         </tr>
