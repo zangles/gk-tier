@@ -1,6 +1,11 @@
 # __Change Log__
 ***
 
+### __v 0.3.1 - 15-09-2017__
+
+- Battles names now taken from translations
+- Translation administrator
+
 ### __v 0.3.0 - 14-09-2017__
 
 - New translations process

@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('/font-awesome/css/font-awesome.css') }}">
+    @yield('styles')
 </head>
 <body>
     <div id="app">
@@ -46,7 +47,7 @@
                                             <a href="{{ route('locale.index') }}">Locales</a>
                                         </li>
                                         <li>
-                                            <a href="#">Translations</a>
+                                            <a href="{{ route('trans.index') }}">Translations</a>
                                         </li>
                                     </ul>
                             </li>

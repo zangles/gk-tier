@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Pilot;
 use App\pilotsDress;
 use App\Raid;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class PilotController extends Controller
 
 
 
-    public function index()
+    public function index(Application $app)
     {
         $pilots = Pilot::all();
         $raids = Raid::all();

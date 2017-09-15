@@ -1,6 +1,6 @@
 <div class="footer fixed">
     <div class="pull-right">
-        v 0.3.0 <span class="label label-info" style="cursor: pointer" data-toggle="modal" data-target="#changeLogModal">Change log</span>
+        v 0.3.1 <span class="label label-info" style="cursor: pointer" data-toggle="modal" data-target="#changeLogModal">Change log</span>
     </div>
     <div>
         <strong>Copyright</strong> Zangles &copy; 2017

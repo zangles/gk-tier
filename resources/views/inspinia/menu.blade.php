@@ -20,7 +20,7 @@
                 <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">The best in...</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     @foreach($raids as $raid)
-                        <li><a href="{{ route('best',$raid->id) }}">{{ $raid->name }}</a></li>
+                        <li><a href="{{ route('best',$raid->id) }}">{{ trans('gk.'.$raid->name) }}</a></li>
                     @endforeach
                 </ul>
             </li>

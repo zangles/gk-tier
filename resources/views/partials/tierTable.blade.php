@@ -4,7 +4,7 @@
         <th data-sortable="false">Pilot</th>
         <th data-sortable="false">Type</th>
         @foreach($raids as $raid)
-            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
+            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ trans('gk.'.$raid->name) }}</th>
         @endforeach
     </tr>
     </thead>
@@ -24,7 +24,6 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <img src="{{ asset('img/'.$pilot->type.'.png') }}" alt=""><br>
-                        {{ $pilot->type }}
                     </div>
                     <div class="col-md-12 hidden-lg hidden-md">
                         <p><h2 class="click-expand"><strong>Click to see tiers</strong></h2></p>

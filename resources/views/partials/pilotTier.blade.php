@@ -4,7 +4,7 @@
         <th data-sortable="false">Pilot</th>
         <th data-sortable="false">Type</th>
         @foreach($raids as $raid)
-            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ $raid->name }}</th>
+            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ trans('gk.'.$raid->name) }}</th>
         @endforeach
     </tr>
     </thead>

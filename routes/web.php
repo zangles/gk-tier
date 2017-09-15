@@ -31,6 +31,8 @@ Route::group(['middleware' => ['web','auth']], function()
 {
     Route::resource('pilot', 'PilotController');
     Route::resource('locale', 'LocaleController');
+    Route::resource('trans', 'TranslationController');
+    Route::get('transAjax/{locale}', 'TranslationController@getTrans')->name('trans.locale');
     Route::get('/locale/restore/{locale}', 'LocaleController@restore')->name('locale.restore');
     Route::get('/app/status', 'HomeController@changeStatus')->name('change.status');
     Route::get('/app/updatedb', 'HomeController@updateDb')->name('update.db');
