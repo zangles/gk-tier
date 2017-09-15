@@ -11,23 +11,29 @@ class RaidSeed extends Seeder
      */
     public function run()
     {
+        //demon
         \DB::table('raids')->insert(array (
-            'name'        => 'Demon',
+            'name'        => '4230011',
         ));
+        //dragon
         \DB::table('raids')->insert(array (
-            'name'        => 'Dragon',
+            'name'        => '4230012',
         ));
+        //kraken
         \DB::table('raids')->insert(array (
-            'name'        => 'Kraken',
+            'name'        => '4230013',
         ));
+        //deathmatch
         \DB::table('raids')->insert(array (
-            'name'        => 'Deathmatch',
+            'name'        => '1913',
         ));
+        //shootout
         \DB::table('raids')->insert(array (
-            'name'        => 'Shootout',
+            'name'        => '1919',
         ));
+        //arena
         \DB::table('raids')->insert(array (
-            'name'        => 'Arena',
+            'name'        => '1908',
         ));
     }
 }
