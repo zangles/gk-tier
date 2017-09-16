@@ -19,10 +19,13 @@
             <li class="{{ Request::is('best/*') ? 'active' : '' }}">
                 <a href="#"><i class="fa fa-line-chart"></i> <span class="nav-label">The best in...</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    @foreach($raids as $raid)
+                    @foreach(App\Raid::all() as $raid)
                         <li><a href="{{ route('best',$raid->id) }}">{{ trans('gk.'.$raid->name) }}</a></li>
                     @endforeach
                 </ul>
+            </li>
+            <li class="{{ Request::is('guides/*') ? 'active' : '' }}">
+                <a href="{{ route('guide.test') }}"><i class="fa fa-list-alt"></i> <span class="nav-label">Guides</span></a>
             </li>
         </ul>
     </div>

@@ -1,6 +1,10 @@
 # __Change Log__
 ***
 
+### __v 0.X.X - XX-XX-XXXX__
+
+- Fix same translations
+
 ### __v 0.3.1 - 15-09-2017__
 
 - Battles names now taken from translations
