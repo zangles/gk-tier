@@ -69,7 +69,7 @@ class HomeController extends Controller
 
         $raid = Raid::findOrFail($raidId);
 
-        $title = 'The best in '.$raid->name;
+        $title = 'The best in '.trans('gk.'.$raid->name);
 
         return view('pilot.list', compact('pilots','raids','raidId', 'title'));
     }
