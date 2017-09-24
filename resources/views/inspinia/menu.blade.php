@@ -24,9 +24,9 @@
                     @endforeach
                 </ul>
             </li>
-            <li class="{{ Request::is('guides/*') ? 'active' : '' }}">
-                <a href="{{ route('guide.test') }}"><i class="fa fa-list-alt"></i> <span class="nav-label">Guides</span></a>
-            </li>
+            {{--<li class="{{ Request::is('guides/*') ? 'active' : '' }}">--}}
+                {{--<a href="{{ route('guide.test') }}"><i class="fa fa-list-alt"></i> <span class="nav-label">Guides</span></a>--}}
+            {{--</li>--}}
         </ul>
     </div>
 </nav>

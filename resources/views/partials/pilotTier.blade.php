@@ -1,56 +1,42 @@
-<table class="table footable" data-filtering="true" data-sorting="true">
-    <thead>
-    <tr>
-        <th data-sortable="false">Pilot</th>
-        <th data-sortable="false">Type</th>
-        @foreach($raids as $raid)
-            <th data-breakpoints="xs sm" class="td_tier td_{{ $raid->id }}" id="th_{{ $raid->name }} ">{{ trans('gk.'.$raid->name) }}</th>
-        @endforeach
-    </tr>
-    </thead>
-    <tbody style="overflow-y: auto" >
-        <tr class="tr_type tr_{{ $pilot->type }}">
-            <td>
-                <a href="{{ route('pilot', $pilot) }}">
-                    <div style="height: 128px; width: 128px">
-                        <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
-                        <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
-                    </div>
-                    <p><strong>{{ trans('gk.'.$pilot->name) }}</strong></p>
-                </a>
-            </td>
-            <td>
-                <div class="col-md-12">
-                    <img src="{{ asset('img/'.$pilot->type.'.png') }}" alt="">
-                    {{ $pilot->type }}
-                </div>
-                <div class="col-md-12 hidden-lg hidden-md">
-                    <p ><h2 class="click-expand"><strong>Click to see tiers</strong></h2></p>
-                </div>
-            </td>
-            @if (count($pilot->raid) == 0)
-                <td class="td_tier text-center" colspan="{{ count($raids) }}">
-                    <br><br><h1>No info yet</h1>
-                </td>
-            @else
-                @foreach($pilot->raid as $tier)
-                    <td class="td_tier td_{{ $tier->id }}">
-                        @include('partials.tierBadge', ['tier' => $tier->pivot->tier ])
-                    </td>
-                @endforeach
-            @endif
-        </tr>
-    </tbody>
-</table>
+<div class="row pilotDiv " style="border-bottom: 1px solid #E7EAEC; margin-bottom: 15px;padding-bottom: 15px">
+    <div class="col-md-12">
+        <p style="display: none" class="pilotName">{{ strtoupper(trans('gk.'.$pilot->name)) }}</p>
+        <p><strong>{{ trans('gk.'.$pilot->name) }}</strong></p>
+    </div>
+    <div class="col-md-3 col-sd-12 text-center">
+        <a href="{{ route('pilot', $pilot) }}">
 
-@section('scripts')
-    <script>
-        jQuery(function($){
-            $('.table').footable();
+            <div style="height: 128px; left:-64px; position: relative;">
+                <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
+                <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
+            </div>
+        </a>
+        <img style="position: relative; margin-top: 10px" src="{{ asset('img/'.$pilot->type.'.png') }}" alt="">
+    </div>
+    <div class="col-md-9 col-sd-12">
+        <div class="row">
+            <div class="col-md-6 col-sd-12">
+                @if (count($pilot->raid) == 0)
+                        <br><br><h1>No info yet</h1>
+                @else
+                    @foreach($raids as $raid)
+                        @if($loop->index == 3)
+                            </div>
+                            <div class="col-md-6 col-sd-12">
+                        @endif
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-xs-6">
+                                    <strong>{{ trans('gk.'.$raid->name) }}</strong>
+                                </div>
+                                <div class="col-xs-6 text-left">
+                                    <img style="max-height: 40px" src="{{ asset('/img/'.$pilot->raid()->find($raid->id)->pivot->tier.'.png') }}" alt="">
+                                </div>
+                            </div>
+                    @endforeach
+                @endif
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
 
-           $(".click-expand").click(function(){
-               $(this).parents('td').click();
-           });
-        });
-    </script>
-@endsection

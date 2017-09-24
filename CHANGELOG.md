@@ -1,9 +1,11 @@
 # __Change Log__
 ***
 
-### __v 0.X.X - XX-XX-XXXX__
+### __v 0.3.2 - 24-09-2017__
 
 - Fix same translations
+- New pilots list stiles
+- Same new images. Thx to razhielth for the [sprites](https://razhielth.deviantart.com/gallery/64226847/Goddess-Kiss)
 
 ### __v 0.3.1 - 15-09-2017__
 
