@@ -63,7 +63,10 @@ class HomeController extends Controller
 
     public function best($id)
     {
-        $pilots = Pilot::all();
+        $pilots = Pilot::whereHas('raid', function ($q) use ($id) {
+            $q->where('tier', 'S')->where('raid_id',$id);
+        })->get();
+
         $raids = Raid::all();
         $raidId = $id;
 

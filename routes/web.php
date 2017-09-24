@@ -26,6 +26,10 @@ Route::get('/best/{id}', 'HomeController@best')->name('best');
 Route::get('/pilot/show/{id}', 'HomeController@pilot')->name('pilot');
 
 
+Route::group(['middleware' => ['web']], function() {
+    Route::get('guides', 'GuidesController@index')->name('guide.test');
+});
+
 
 Route::group(['middleware' => ['web','auth']], function()
 {
