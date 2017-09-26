@@ -20,7 +20,7 @@
                 <div class="ibox-title">
                     <h5>Pilot list</h5>
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content pilotList">
                     @include('partials.tierTable')
                 </div>
             </div>

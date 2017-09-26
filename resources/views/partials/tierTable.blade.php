@@ -21,11 +21,11 @@
             var search = $("#search").val().toUpperCase();
             if (search != '') {
                 if (search.length >= 3){
-                    $(".pilotDiv").hide();
-                    $(".pilotDiv .pilotName:contains('"+search+"')").parents('.pilotDiv').show();
+                    $(".pilotList .pilotDiv").hide();
+                    $(".pilotList .pilotDiv .pilotName:contains('"+search+"')").parents('.pilotDiv').show();
                 }
             } else {
-                $(".pilotDiv").show();
+                $(".pilotList .pilotDiv").show();
             }
         }
     </script>
