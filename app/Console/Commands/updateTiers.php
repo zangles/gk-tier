@@ -43,6 +43,7 @@ class updateTiers extends Command
      */
     public function handle()
     {
+        $this->line('recover Csv');
         $csv = file_get_contents($this->sheetUrl);
         $nameColumn = 0;
         $raidsColumns['4230011'] = 1; //demon
@@ -54,9 +55,20 @@ class updateTiers extends Command
 
         $rows = array_map('str_getcsv', explode("\n", $csv));
 
+        $pilotsBar = $this->output->createProgressBar(count($rows));
+        $pilotsBar->setMessage('Updating Tiers');
+        $pilotsBar->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+        $pilotsBar->setFormat('custom');
+
+        $totalPilots = Pilot::all()->count();
+        $updated = 0;
         foreach ($rows as $pilotTier) {
             if ($pilotTier[$nameColumn] != '') {
-                $translates = Translation::where('text','like', $this->specialNames($pilotTier[$nameColumn]).'%')
+                $pilotName = $this->specialNames($pilotTier[$nameColumn]);
+
+
+
+                $translates = Translation::where('text','like', $pilotName.'%')
                     ->where('locale','=','en')
                     ->orderBy('id','asc')
                     ->get();
@@ -67,6 +79,8 @@ class updateTiers extends Command
                     $pilot = Pilot::where('name',$codeName)->get();
 
                     if (count($pilot) > 0) {
+                        $pilotsBar->setMessage('Updating tiers - ' . $pilotName);
+
                         $raids = Raid::all();
 
                         DB::table('pilot_raid')
@@ -77,12 +91,17 @@ class updateTiers extends Command
                             $pilot[0]->raid()->attach($raid->id, ['tier' => $this->getClearTier($pilotTier[$raidsColumns[$raid->name]]) ] );
                         }
 
+                        $updated++;
                         $pilot[0]->save();
                     }
                 }
-
             }
+            $pilotsBar->advance();
         }
+        $pilotsBar->finish();
+
+        $this->line(PHP_EOL);
+        $this->info('pilots tiers updated '.$updated.'/'.$totalPilots);
 
     }
 
