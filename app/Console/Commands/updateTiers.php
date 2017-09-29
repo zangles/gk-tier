@@ -56,7 +56,7 @@ class updateTiers extends Command
 
         foreach ($rows as $pilotTier) {
             if ($pilotTier[$nameColumn] != '') {
-                $translates = Translation::where('text','like', $pilotTier[$nameColumn].'%')
+                $translates = Translation::where('text','like', $this->specialNames($pilotTier[$nameColumn]).'%')
                     ->where('locale','=','en')
                     ->orderBy('id','asc')
                     ->get();
@@ -74,7 +74,7 @@ class updateTiers extends Command
                             ->delete();
 
                         foreach ($raids as $raid) {
-                            $pilot[0]->raid()->attach($raid->id, ['tier' => $pilotTier[$raidsColumns[$raid->name]] ] );
+                            $pilot[0]->raid()->attach($raid->id, ['tier' => $this->getClearTier($pilotTier[$raidsColumns[$raid->name]]) ] );
                         }
 
                         $pilot[0]->save();
@@ -84,6 +84,26 @@ class updateTiers extends Command
             }
         }
 
+    }
 
+    private function getClearTier($tier)
+    {
+        return str_replace('*','' ,trim($tier));
+    }
+
+    private function specialNames($name)
+    {
+        $rtrn = $name;
+        // excel name => translation name
+        $maps = [
+            'Ryu Bing Bing' => 'Ryu BingBing',
+            'Betty Abagail' => 'Betty Abigail',
+        ];
+
+        if (isset($maps[$name])) {
+            $rtrn = $maps[$name];
+        }
+
+        return $rtrn;
     }
 }
