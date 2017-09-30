@@ -22,7 +22,7 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
     <link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/plugins/bootstrapSocial/bootstrap-social.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/plugins/fooTable/footable.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
 
     @yield('styles')
 
@@ -72,7 +72,7 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ asset('/js/plugins/fooTable/footable.js') }}"></script>
+<script src="{{ asset('/js/plugins/summernote/summernote.min.js') }}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('/js/inspinia.js') }}"></script>

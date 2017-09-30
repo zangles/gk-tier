@@ -5,11 +5,7 @@
     </div>
     <div class="col-md-3 col-sd-12 text-center">
         <a href="{{ route('pilot', $pilot) }}">
-
-            <div style="height: 128px; left:-64px; position: relative;">
-                <img src="http://gkgirls.info.gf/img/pilots/{{ $pilot->id }}.png" alt="" style="position: absolute">
-                <img src="http://gkgirls.info.gf/img/frame.png" class="pilot-headshot"  style="position: absolute">
-            </div>
+            @include('pilot.partials.pilotPortrait', ['id' => $pilot->id])
         </a>
         <img style="position: relative; margin-top: 10px" src="{{ asset('img/'.$pilot->type.'.png') }}" alt="">
     </div>
@@ -19,7 +15,7 @@
                 @if (count($pilot->raid) == 0)
                         <br><br><h1>No info yet</h1>
                 @else
-                    @foreach($raids as $raid)
+                    @foreach($pilot->raid()->get() as $raid)
                         @if($loop->index == 3)
                             </div>
                             <div class="col-md-6 col-sd-12">
