@@ -34,7 +34,7 @@
                     <div class="ibox-title">
                         <h5>Guide Data</h5>
                     </div>
-                    <div class="ibox-content">
+                    <div class="ibox-content" style="overflow: auto">
                         <div class="form-group">
                             <label for="">Title</label>
                             <input type="text" class="form-control" name="title" value="{{ old('title', $guide->title) }}">
