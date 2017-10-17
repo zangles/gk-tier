@@ -10,4 +10,9 @@ class Guides extends Model
     {
         return $this->hasMany('App\PilotsGuide');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User')->get()->first();
+    }
 }

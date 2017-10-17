@@ -22,7 +22,7 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
     <link href="{{ asset('/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('/css/plugins/bootstrapSocial/bootstrap-social.css') }}" rel="stylesheet">
-    <link href="{{ asset('/css/plugins/fooTable/footable.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('/css/plugins/summernote/summernote.css') }}" rel="stylesheet">
 
     @yield('styles')
 
@@ -72,7 +72,7 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
 <script src="{{ asset('/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ asset('/js/plugins/fooTable/footable.js') }}"></script>
+<script src="{{ asset('/js/plugins/summernote/summernote.min.js') }}"></script>
 
 <!-- Custom and plugin javascript -->
 <script src="{{ asset('/js/inspinia.js') }}"></script>
@@ -99,16 +99,17 @@ header('X-Frame-Options: ALLOW-FROM http://gkgirlstiers.tk/');
     }
 </script>
 
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+@if (App::environment('production'))
+    <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-106151130-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
+            ga('create', 'UA-106151130-1', 'auto');
+            ga('send', 'pageview');
+    </script>
+@endif
 
 @yield('scripts')
 

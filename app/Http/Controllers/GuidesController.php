@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Guides;
+use App\Pilot;
+use App\PilotsGuide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GuidesController extends Controller
 {
@@ -14,11 +17,11 @@ class GuidesController extends Controller
      */
     public function index()
     {
-        $guide = Guides::findOrFail(1);
-        $title = $guide->title;
-        return view('guides.view', compact('guide', 'title'));
+        $guides = Guides::all();
+        $title = 'Guides';
 
-//        dd($guide->pilots()->get()[0]->ooparts()->get()[0]->oopart()->get());
+        return view('guides.list', compact('guides', 'title'));
+
     }
 
     /**
@@ -28,7 +31,9 @@ class GuidesController extends Controller
      */
     public function create()
     {
-        //
+        $pilots = Pilot::all();
+        $title = 'Create Guide';
+        return view('guides.create', compact('pilots','title'));
     }
 
     /**
@@ -39,18 +44,46 @@ class GuidesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+        $guide = new Guides();
+        $guide->title = $request->input('title');
+        $guide->user_id = Auth::user()->id;
+        $guide->content = $request->input('content');
+        $guide->save();
+
+        for($i = 1; $i <= 9; $i++) {
+            $pilotId = $request->input('pilot_'.$i);
+            if (!is_null($pilotId)) {
+                $pilot = new PilotsGuide();
+                $pilot->pilot_id = $pilotId;
+                $pilot->position = $i;
+                $pilot->wave = 1;
+
+                $guide->pilots()->save($pilot);
+            }
+        }
+
+        return redirect()->route('guides.index');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Guides  $guides
+     * @param  \App\Guides  $guide
      * @return \Illuminate\Http\Response
      */
-    public function show(Guides $guides)
+    public function show(Guides $guide)
     {
-        //
+        $title = $guide->title;
+
+        $positions = $this->getPilotPositions($guide);
+
+        return view('guides.view', compact('guide', 'title', 'positions'));
     }
 
     /**
@@ -59,9 +92,31 @@ class GuidesController extends Controller
      * @param  \App\Guides  $guides
      * @return \Illuminate\Http\Response
      */
-    public function edit(Guides $guides)
+    public function edit($guideId)
     {
-        //
+        $guide = Guides::findOrfail($guideId);
+
+        $pilots = Pilot::all();
+        $title = $guide->title;
+        $positions = $this->getPilotPositions($guide);
+
+        $cantSelected = $guide->pilots()->count();
+        return view('guides.edit', compact('guide', 'title', 'positions', 'pilots','cantSelected'));
+    }
+
+    private function getPilotPositions($guide)
+    {
+        $positions = [];
+        for ($i=1; $i<=9 ; $i++){
+            $pilot = $guide->pilots()->where('position',$i)->get();
+            if ($pilot->count() == 0) {
+                $positions[$i] = '';
+            } else {
+                $positions[$i] = $pilot->first()->pilot();
+            }
+        }
+
+        return $positions;
     }
 
     /**
@@ -71,9 +126,32 @@ class GuidesController extends Controller
      * @param  \App\Guides  $guides
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Guides $guides)
+    public function update(Request $request, Guides $guide)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+
+
+        $guide->title = $request->input('title');
+        $guide->user_id = Auth::user()->id;
+        $guide->content = $request->input('content');
+        $guide->save();
+
+        for($i = 1; $i <= 9; $i++) {
+            $pilotId = $request->input('pilot_'.$i);
+            if (!is_null($pilotId)) {
+                $pilot = new PilotsGuide();
+                $pilot->pilot_id = $pilotId;
+                $pilot->position = $i;
+                $pilot->wave = 1;
+
+                $guide->pilots()->save($pilot);
+            }
+        }
+
+        return redirect()->route('guides.index');
     }
 
     /**
