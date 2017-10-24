@@ -77,7 +77,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{ $transRepo->allByLocale($locale->locale, 10)->links() }}
+                        {{ $transRepo->allByLocale($locale->locale, 10)->appends(Request::expect('page'))->links() }}
                     </div>
                 </div>
             </div>
