@@ -79,6 +79,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        {{ old('search') }}
                         {{ $transRepo->search($locale->locale, old('search') , 10)->links() }}
                     </div>
                 </div>
