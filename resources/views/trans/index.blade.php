@@ -41,7 +41,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($transRepo->search($locale->locale, old('search') , 10) as $trans)
+                                                @foreach($transRepo->search($locale->locale, app('request')->input('search') , 10) as $trans)
                                                     <tr>
                                                         <td>{{ $trans->item }}</td>
                                                         <td>{{ $trans->text }}</td>
@@ -79,8 +79,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{ app('request')->input('search') }}
-                        {{ $transRepo->search($locale->locale, old('search') , 10)->links() }}
+                        {{ $transRepo->search($locale->locale, app('request')->input('search') , 10)->links() }}
                     </div>
                 </div>
             </div>
