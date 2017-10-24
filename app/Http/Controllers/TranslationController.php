@@ -8,6 +8,8 @@ use Waavi\Translation\Models\Language;
 use Waavi\Translation\Models\Translation;
 use Waavi\Translation\Repositories\LanguageRepository;
 use Waavi\Translation\Repositories\TranslationRepository;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class TranslationController extends Controller
 {
@@ -19,7 +21,12 @@ class TranslationController extends Controller
     public function index(Application $app)
     {
         $locales = Language::withTrashed()->get();
+
         $transRepo = new TranslationRepository(new Translation(), $app);
+        $currentPage = Paginator::resolveCurrentPage() - 1;
+        $perPage = 10;
+        $currentPageSearchResults = $transRepo->slice($currentPage * $perPage, $perPage)->all();
+        $transRepo = new LengthAwarePaginator($currentPageSearchResults, count($transRepo), $perPage);
 
         return view('trans.index', compact('transRepo', 'locales'));
     }
