@@ -21,7 +21,9 @@
                                 <li role="presentation" class="@if($loop->first ) active @endif"><a href="#{{ $locale->locale }}" aria-controls="{{ $locale->locale }}" role="tab" data-toggle="tab">{{ $locale->name }} ({{ $locale->locale }})</a></li>
                             @endforeach
                         </ul>
-
+                        <form >
+                            <input type="text" class="form-control" id="search" name="search" value="">
+                        </form>
                         <!-- Tab panes -->
                         <div class="tab-content">
                             @foreach($locales as $locale)
@@ -39,7 +41,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($transRepo->allByLocale($locale->locale, 10) as $trans)
+                                                @foreach($transRepo->search($locale->locale, old('search') , 10) as $trans)
                                                     <tr>
                                                         <td>{{ $trans->item }}</td>
                                                         <td>{{ $trans->text }}</td>
@@ -77,7 +79,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{ $transRepo->allByLocale($locale->locale, 10)->appends(Request::expect('page'))->links() }}
+                        {{ $transRepo->search($locale->locale, old('search') , 10)->links() }}
                     </div>
                 </div>
             </div>

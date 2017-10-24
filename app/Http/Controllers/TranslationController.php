@@ -23,8 +23,6 @@ class TranslationController extends Controller
         $locales = Language::withTrashed()->get();
 
         $transRepo = new TranslationRepository(new Translation(), $app);
-        $currentPage = Paginator::resolveCurrentPage() - 1;
-        $perPage = 10;
 
         return view('trans.index', compact('transRepo', 'locales'));
     }
