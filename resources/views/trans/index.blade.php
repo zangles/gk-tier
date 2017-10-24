@@ -77,6 +77,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        {{ $transRepo->allByLocale($locale->locale, 10)->links() }}
                     </div>
                 </div>
             </div>
