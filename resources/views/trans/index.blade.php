@@ -39,7 +39,7 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach($transRepo->allByLocale($locale->locale) as $trans)
+                                                @foreach($transRepo->allByLocale($locale->locale, 10) as $trans)
                                                     <tr>
                                                         <td>{{ $trans->item }}</td>
                                                         <td>{{ $trans->text }}</td>

@@ -25,8 +25,6 @@ class TranslationController extends Controller
         $transRepo = new TranslationRepository(new Translation(), $app);
         $currentPage = Paginator::resolveCurrentPage() - 1;
         $perPage = 10;
-        $currentPageSearchResults = $transRepo->slice($currentPage * $perPage, $perPage)->all();
-        $transRepo = new LengthAwarePaginator($currentPageSearchResults, count($transRepo), $perPage);
 
         return view('trans.index', compact('transRepo', 'locales'));
     }
