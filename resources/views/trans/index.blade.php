@@ -14,6 +14,10 @@
                         </div>
                     </div>
 
+                    <form >
+                        <input type="text" class="form-control" id="search" name="search" value="{{ app('request')->input('search') }}">
+                    </form>
+
                     <div class="panel-body">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
@@ -21,10 +25,6 @@
                                 <li role="presentation" class="@if($loop->first ) active @endif"><a href="#{{ $locale->locale }}" aria-controls="{{ $locale->locale }}" role="tab" data-toggle="tab">{{ $locale->name }} ({{ $locale->locale }})</a></li>
                             @endforeach
                         </ul>
-                        <form >
-                            <input type="text" class="form-control" id="search" name="search" value="{{ old('search') }}">
-                            <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
-                        </form>
                         <!-- Tab panes -->
                         <div class="tab-content">
                             @foreach($locales as $locale)
