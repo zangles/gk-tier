@@ -90,15 +90,16 @@
     <script src="{{ asset('/js/plugins/dataTables/jquery.dataTables.js') }}"></script>
 
     <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 100,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
 
-            });
-
-        });
+//        $(document).ready(function(){
+//            $('.dataTables-example').DataTable({
+//                pageLength: 100,
+//                responsive: true,
+//                dom: '<"html5buttons"B>lTfgitp',
+//
+//            });
+//
+//        });
 
     </script>
 
