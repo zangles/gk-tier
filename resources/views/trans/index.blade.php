@@ -22,7 +22,8 @@
                             @endforeach
                         </ul>
                         <form >
-                            <input type="text" class="form-control" id="search" name="search" value="">
+                            <input type="text" class="form-control" id="search" name="search" value="{{ old('search') }}">
+                            <input type="hidden" name="page" value="{{ app('request')->input('page') }}">
                         </form>
                         <!-- Tab panes -->
                         <div class="tab-content">
